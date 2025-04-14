@@ -11,7 +11,7 @@ namespace Assignment3.Utility
         public User Data { get; set; }
         public Node Next { get; set; } //default value: null
 
-        public Node( User data)
+        public Node(User data)
         {
             this.Data = data;
         }
