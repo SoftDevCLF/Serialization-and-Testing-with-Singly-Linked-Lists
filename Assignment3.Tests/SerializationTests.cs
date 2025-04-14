@@ -28,7 +28,7 @@ namespace Assignment3.Tests
 
 
         /// <summary>
-        /// Tests the object was serialized.
+        /// Tests the object was prepended
         /// </summary>
         [Test] 
         public void PrependingNodesToTheBeginningOfTheList()
@@ -42,7 +42,25 @@ namespace Assignment3.Tests
             //Assert: Verify the new node is the head node
             Assert.AreEqual(firstUser, this.users.Head.Data);
         }
-        
+
+        /// <summary>
+        /// Tests the object was appended.
+        /// </summary>
+        [Test]
+        public void AppendingNodesToTheEndOfTheList()
+        {
+            //Arrange: linked list and end data
+            var lastUser = new User(0, "Last Node", "last.node@gmail.com", "password987");
+
+            //Act: Add the last node
+            this.users.AddLast(lastUser);
+
+            //Assert: Verify the last node is the tail
+            Assert.AreEqual(lastUser, this.users.Tail.Data);
+        }
+
+
+
         /// <summary>
         /// Tests the object was serialized.
         /// </summary>
