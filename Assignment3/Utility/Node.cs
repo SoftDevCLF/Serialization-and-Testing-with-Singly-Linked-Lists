@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Assignment3.Utility
 {
-    public class Node
+    public class Node<T>
     {
-        public User Data { get; set; }
-        public Node Next { get; set; } //default value: null
+        public T Data { get; set; }
+        public Node<T> Next { get; set; } 
 
-        public Node(User data)
+        public Node(T data)
         {
             this.Data = data;
         }
