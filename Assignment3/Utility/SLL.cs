@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,30 @@ namespace Assignment3.Utility
             Counter = 0;
         }
 
+        public void PrintAllNodes()
+        {
+            Node current = Head;
+            if (current == null)
+            {
+                Console.WriteLine("Sorry, nothing is in there!");
+                return;
+            }
+
+            while (current != null)
+            {
+                User user = current.Data;
+                Console.WriteLine($"ID: {user.Id}, Name: {user.Name}, Email: {user.Email}, Password: {user.Password}");
+                current = current.Next;
+            }
+        }
+
+
+        /// <summary>
+        /// Adds a new element at a specific position.
+        /// </summary>
+        /// <param name="value">Value that element is to contain.</param>
+        /// <param name="index">Index to add new element at.</param>
+        /// <exception cref="IndexOutOfRangeException">Thrown if index is negative or past the size of the list.</exception>
         public void Add(User value, int index)
         {
             //New node
@@ -84,7 +109,10 @@ namespace Assignment3.Utility
             }
         }
 
-        //Add a node at the beginning
+        /// <summary>
+        /// Prepends (adds to beginning) value to the list.
+        /// </summary>
+        /// <param name="value">Value to store inside element.</param>
         public void AddFirst(User value)
         {
             //New node 
@@ -111,7 +139,10 @@ namespace Assignment3.Utility
             Counter++;
         }
 
-        //Add a node at the end
+        /// <summary>
+        /// Adds to the end of the list.
+        /// </summary>
+        /// <param name="value">Value to append.</param>
         public void AddLast(User value)
         {
             //New node 
@@ -138,7 +169,9 @@ namespace Assignment3.Utility
             Counter++;
         }
 
-        //Clear the list
+        /// <summary>
+        /// Clears the list.
+        /// </summary>
         public void Clear()
         {
             //The head and tail are set to null, counter is set to 0
@@ -147,7 +180,11 @@ namespace Assignment3.Utility
             Counter = 0;
         }
 
-        //Check if the list contains the value
+        /// <summary>
+        /// Go through nodes and check if one has value.
+        /// </summary>
+        /// <param name="value">Value to find index of.</param>
+        /// <returns>True if element exists with value.</returns>
         public bool Contains(User value)
         {
             //New node that points to the head
@@ -166,7 +203,10 @@ namespace Assignment3.Utility
             return false; //If the value is not in the list, return false
         }
 
-        //Count the number of nodes
+        /// <summary>
+        /// Gets the number of elements in the list.
+        /// </summary>
+        /// <returns>Size of list (0 meaning empty)</returns>
         public int Count()
         {
             //New node that points to the head
@@ -183,7 +223,12 @@ namespace Assignment3.Utility
             return Counter;
         }
 
-        //Return the value of an specific index
+        /// <summary>
+        /// Gets the value at the specified index.
+        /// </summary>
+        /// <param name="index">Index of element to get.</param>
+        /// <returns>Value of node at index</returns>
+        /// <exception cref="IndexOutOfRangeException">Thrown if index is negative or larger than size - 1 of list.</exception>
         public User GetValue(int index)
         {
 
@@ -207,7 +252,11 @@ namespace Assignment3.Utility
 
         }
 
-        //Return the index of the value
+        /// <summary>
+        /// Gets the first index of element containing value.
+        /// </summary>
+        /// <param name="value">Value to find index of.</param>
+        /// <returns>First of index of node with matching value or -1 if not found.</returns>
         public int IndexOf(User value)
         {
             //New node that points to the head
@@ -243,7 +292,10 @@ namespace Assignment3.Utility
 
         }
 
-        //Check if the list is empty
+        /// <summary>
+        /// Checks if the list is empty.
+        /// </summary>
+        /// <returns>True if it is empty.</returns>
         public bool IsEmpty()
         {
             //New node that points to the head
@@ -263,7 +315,11 @@ namespace Assignment3.Utility
             }
         }
 
-        //Remove a node
+        /// <summary>
+        /// Removes element at index from list, reducing the size.
+        /// </summary>
+        /// <param name="index">Index of element to remove.</param>
+        /// <exception cref="IndexOutOfRangeException">Thrown if index is negative or larger than size - 1 of list.</exception>
         public void Remove(int index)
         {
             Node current = Head;
@@ -290,7 +346,10 @@ namespace Assignment3.Utility
             }
         }
 
-        //Remove the first node
+        /// <summary>
+        /// Removes first element from list
+        /// </summary>
+        /// <exception cref="CannotRemoveException">Thrown if list is empty.</exception>
         public void RemoveFirst()
         {
             //If the list is empty
@@ -323,7 +382,10 @@ namespace Assignment3.Utility
             Counter--;
         }
 
-        //Remove the last node
+        /// <summary>
+        /// Removes last element from list
+        /// </summary>
+        /// <exception cref="CannotRemoveException">Thrown if list is empty.</exception>
         public void RemoveLast()
         {
             //If the list is empty
@@ -361,6 +423,12 @@ namespace Assignment3.Utility
             Counter--;//Decrement the count of nodes
         }
 
+        /// <summary>
+        /// Replaces the value  at index.
+        /// </summary>
+        /// <param name="value">Value to replace.</param>
+        /// <param name="index">Index of element to replace.</param>
+        /// <exception cref="IndexOutOfRangeException">Thrown if index is negative or larger than size - 1 of list.</exception>
         public void Replace(User value, int index)
         {
             if (IsEmpty())
@@ -402,6 +470,51 @@ namespace Assignment3.Utility
 
             }
         }
+
+        //Bonus method
+        ///<summary>
+        ///Join two or more linked lists together to create a single linked list
+        ///</summary>
+        ///<param name="nextList">Linked list to join</param>
+        ///<exception cref="NullReferenceException">Thrown if list is null.</exception>
+        public void Join(SLL nextList)
+        {
+            //If the list we want to join is empty
+            if (nextList.Head == null)
+            {
+                Console.WriteLine("Sorry, the list wou want to join is empty!");
+                return; // Nothing to join
+            }
+
+            //If the current list is empty
+            if (Head == null)
+            {
+                //The next list becomes the current list
+                Head = nextList.Head;
+                Tail = nextList.Tail;
+                Counter = nextList.Counter;
+            }
+
+            //If the current list is not empty and the next list is not empty
+            else
+            {
+                // Link the current tail to the head of the other list, creating a loop until reaching the end of the other list
+                Tail.Next = nextList.Head;
+                //Ensure that the tail of the current list is the tail of the other list
+                Tail = nextList.Tail;
+                //Increment the count
+                Counter += nextList.Counter;
+            }
+        }
     }
+
+
+
+
+
+
+
 }
+    
+
 
