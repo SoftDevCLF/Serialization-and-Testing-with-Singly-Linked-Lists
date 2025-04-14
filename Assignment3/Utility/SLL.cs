@@ -1,20 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-<<<<<<< HEAD
 using System.Data;
-=======
->>>>>>> master
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Assignment3.Utility
 {
-<<<<<<< HEAD
     public class SLL : ILinkedListADT
     {
         public Node Head { get; set; }
-        public Node Tail { get; set; }
+        public Node  Tail { get; set; }
         public int Counter { get; set; }
 
         public SLL()
