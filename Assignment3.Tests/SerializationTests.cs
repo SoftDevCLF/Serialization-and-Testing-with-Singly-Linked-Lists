@@ -149,6 +149,33 @@ namespace Assignment3.Tests
             Assert.AreEqual(user.Id, 2); // Assert that the Id of the user at index 1 in the list is equal to 2.
         }
         /// <summary>
+        /// Tests the item was joined
+        /// </summary>
+        [Test]
+        public void JoinTwoLinkedListsTogether()
+        {
+            //Arrange: Initialize two linked lists
+            SLL list1 = new SLL();
+            SLL list2 = new SLL();
+
+            //Act: Add users to the first list
+            list1.Add(new User(1, "John", "john@gmail.com", "password"), 0);
+            list1.Add(new User(2, "Jim", "jim@gmail.com", "password3"), 1);
+
+            //Act: Add users to the second list
+            list2.Add(new User(3, "Jessica", "jessica@gmail.com", "password4"), 0);
+            list2.Add(new User(4, "Temi", "temi@gmail.com", "password5"), 1);
+
+            //Act: Join the two lists
+            list1.Join(list2);
+
+             //Assert: Verify the total count is correct
+            int expectedTotalCount = 4; // 2 nodes in list1 + 2 nodes in list2 total should be 4
+            Assert.AreEqual(list2.Counter, expectedTotalCount);
+
+        }
+
+        /// <summary>
         /// Tests the object was serialized.
         /// </summary>
         [Test]
@@ -164,7 +191,7 @@ namespace Assignment3.Tests
         [Test]
         public void TestDeSerialization()
         {
-            SerializationHelper.SerializeUsers(users, testFileName);
+            //SerializationHelper.DeserializeUsers(users, testFileName);
             ILinkedListADT deserializedUsers = SerializationHelper.DeserializeUsers(testFileName);
             
             Assert.IsTrue(users.Count() == deserializedUsers.Count());
