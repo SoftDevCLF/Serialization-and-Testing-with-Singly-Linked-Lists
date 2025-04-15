@@ -1,4 +1,7 @@
 using Assignment3;
+using NUnit.Framework;
+using System.IO;
+using Assignment3.Utility;
 
 namespace Assignment3.Tests
 {
@@ -11,7 +14,7 @@ namespace Assignment3.Tests
         public void Setup()
         {
             // Uncomment the following line
-            //this.users = new SLL();
+            this.users = new SLL();
 
             users.AddLast(new User(1, "Joe Blow", "jblow@gmail.com", "password"));
             users.AddLast(new User(2, "Joe Schmoe", "joe.schmoe@outlook.com", "abcdef"));
