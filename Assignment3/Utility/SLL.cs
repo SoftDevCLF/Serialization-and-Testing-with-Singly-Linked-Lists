@@ -8,11 +8,16 @@ using System.Threading.Tasks;
 
 namespace Assignment3.Utility
 {
+    [DataContract]
+    [KnownType(typeof(Node))]
     [KnownType(typeof(SLL))]
     public class SLL : ILinkedListADT
     {
+        [DataMember]
         public Node Head { get; set; }
+        [DataMember]
         public Node  Tail { get; set; }
+        [DataMember]
         public int Counter { get; set; }
 
         public SLL()
