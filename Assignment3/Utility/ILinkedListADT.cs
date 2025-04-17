@@ -3,11 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Assignment3.Utility;
 
 namespace Assignment3
 {//Just testing that it goes to github haha
     public interface ILinkedListADT
     {
+        /// <summary>
+        /// Reference to the first node in the list.
+        /// </summary>
+        Node Head { get; set; }
+
+        /// <summary>
+        /// Reference to the last node in the list.
+        /// </summary>
+        Node Tail { get; set; }
+
         /// <summary>
         /// Checks if the list is empty.
         /// </summary>
